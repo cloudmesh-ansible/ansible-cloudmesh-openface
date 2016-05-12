@@ -7,5 +7,5 @@
 - include: ubuntu_2_torch.yml tags=torch
   when: ansible_distribution == 'Ubuntu'
 
-- include: ubuntu_2_openface.yml tags=openface
+- include: ubuntu_3_openface.yml tags=openface
   when: ansible_distribution == 'Ubuntu'

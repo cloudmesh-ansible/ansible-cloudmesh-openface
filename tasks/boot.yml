@@ -1,8 +1,11 @@
 ---
-- hosts: localhost
+- hosts: 127.0.0.1
+  connection: local
 
   tasks:
 
+  - name: Start  {{ count }} vms on chameleon cloud
+    shell: cm $PWD/files/boot-vms-{{ count }}.cm
+    register: result
 
-  - name: Start 3 vms on chameleon cloud
-    shell: cm files/boot-vm.cm
+  - debug: var=result
