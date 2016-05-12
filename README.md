@@ -1,7 +1,7 @@
 Cloudesh Ansible Openface
 =========================
 
-A brief description of the role goes here.
+This role is not yet operational.
 
 Requirements
 ------------
