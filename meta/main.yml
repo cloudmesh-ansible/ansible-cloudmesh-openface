@@ -1,6 +1,6 @@
 galaxy_info:
   author: Gregor von Laszewski
-  description: This role is not yet available
+  description: Installs Openface, opencv, and torch.
   company: Indiana University
   license: Apache 2.0
   min_ansible_version: 2.0
@@ -14,5 +14,6 @@ galaxy_info:
   galaxy_tags:
     - cloudmesh
     - openface
+    - opencv
     - torch
 dependencies: []

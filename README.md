@@ -32,6 +32,15 @@ Start a number of virtual machines with cloudmesh on cloud cm
 
     ansible-playbook tasks/boot.yml -e count=2
 
+List the inventory
+
+    cat inventory.txt
+
+For each ip do
+
+    rm ~/.ssh/known_hosts
+    ssh cc@<IP> uname
+
 Stat the deployment
 
     ansible-playbook  tasks/main.yml -i inventory.txt -u cc
