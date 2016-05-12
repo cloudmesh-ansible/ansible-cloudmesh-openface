@@ -17,16 +17,8 @@ vm boot
 vm ip assign
 var vm1=default.vm
 
-vm boot
-vm ip assign
-var vm2=default.vm
-
-vm boot
-vm ip assign
-var vm3=default.vm
-
 sleep 10
 
 vm list
 
-vm ip inventory $vm1,$vm2,$vm3
+vm ip inventory $vm1

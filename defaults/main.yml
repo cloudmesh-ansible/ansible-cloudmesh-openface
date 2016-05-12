@@ -1,2 +1,9 @@
 ---
 # defaults file for ansible-cloudmesh-openface
+
+cloud:
+   name: cm
+   number: 1
+
+install:
+    dir: /opt
