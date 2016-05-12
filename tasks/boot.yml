@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+
+  tasks:
+
+
+  - name: Start 3 vms on chameleon cloud
+    shell: cm files/boot-vm.cm

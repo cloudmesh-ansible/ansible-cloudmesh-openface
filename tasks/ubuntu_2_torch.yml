@@ -1,0 +1,53 @@
+---
+- hosts: servers
+
+  tasks:
+
+  - name: Install torch deps
+    shell: echo "Y" | bash ./install-deps chdir=~/torch
+
+  - name: Install torch
+    become_method: sudo
+    shell:  yes | ./install.sh chdir=~/torch
+
+  - name: Source bashrc
+    shell: source ~/.bashrc chdir=~/torch
+    args:
+      executable: /bin/bash
+
+  - name: Install torch dpnn
+    become_method: sudo
+    shell: ~/torch/install/bin/luarocks install dpnn
+
+  - name: Install torch nn
+    become_method: sudo
+    shell: ~/torch/install/bin/luarocks install nn
+
+  - name: Install torch optim
+    become_method: sudo
+    shell: ~/torch/install/bin/luarocks install optim
+
+  - name: Install torch csvigo
+    become_method: sudo
+    shell: ~/torch/install/bin/luarocks install csvigo
+
+#  - name: Install torch cutorch
+#    become_method: sudo
+#    shell: ~/torch/install/bin/luarocks install cutorch
+
+#  - name: Install torch cunn
+#    become_method: sudo
+#    shell: ~/torch/install/bin/luarocks install cunn
+
+#  - name: Install torch fblualib
+#    become_method: sudo
+#    shell: ~/torch/install/bin/luarocks install fblualib
+
+  - name: Install torch torchx
+    become_method: sudo
+    shell: ~/torch/install/bin/luarocks install torchx
+
+  - name: Install torch optnet
+    become_method: sudo
+    shell: ~/torch/install/bin/luarocks install optnet
+

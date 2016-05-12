@@ -1,0 +1,25 @@
+---
+- hosts: servers
+
+  tasks:
+
+  - name: Display all variables/facts known for a host
+    debug: var=hostvars[inventory_hostname]["ansible_env"]
+
+
+  - name: Display HOME
+    become: yes
+    shell: env
+    register: result
+
+  - name: Echo HOME
+    debug: var=result
+
+
+  - name: Install openface
+    become: yes
+    shell: python setup.py install chdir=./openface
+
+  - name: Install models
+    shell: ./models/get-models.sh chdir=./openface
+

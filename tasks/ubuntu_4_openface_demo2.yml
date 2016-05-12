@@ -1,0 +1,16 @@
+---
+- hosts: servers
+
+  tasks:
+
+
+#  - name: Source bashrc
+#    shell: source ~/.bashrc chdir=~/torch
+#    args:
+#      executable: /bin/bash
+
+  - name: Run demo2
+    shell: "source /home/cc/torch/install/bin/torch-activate; /home/cc/ansible-cloudmesh-face/ubuntu/demo2.sh 10"
+    args:
+      executable: /bin/bash
+      chdir: /home/cc/openface

@@ -1,0 +1,93 @@
+---
+- hosts: servers
+
+  tasks:
+
+  - name: Update apt
+    become: yes
+    apt: update_cache=yes
+
+  - name: Upgrade apt
+    become: yes
+    apt: upgrade=full
+
+  - name: Install basic software
+    apt: pkg={{ item }} state=installed
+    become: yes
+    with_items:
+      - build-essential
+      - pkg-config
+      - cmake
+      - git
+
+  - name: Install emacs
+    apt: pkg={{ item }} state=installed
+    become: yes
+    with_items:
+      - emacs24-nox
+
+  - name: Install libraries
+    apt: pkg={{ item }} state=installed
+    become: yes
+    with_items:
+      - libgtk2.0-dev
+      - libavcodec-dev
+      - libavformat-dev
+      - libswscale-dev
+      - libtbb2
+      - libtbb-dev
+      - libjpeg-dev
+      - libpng-dev
+      - libtiff-dev
+      - libjasper-dev
+      - libdc1394-22-dev
+      - libboost-all-dev
+      - libreadline-dev
+
+  - name: Install python libraries
+    apt: pkg={{ item }} state=installed
+    become: yes
+    with_items:
+      - python-dev
+      - python-pip
+      - python-numpy
+      - python-pandas
+      - python-opencv
+      - python-numpy
+      - python-scipy
+      - ipython
+
+  - name: Install sci-kit and dlib
+    pip: name={{item}}
+    become: yes 
+    with_items:
+      - scikit-learn 
+      - dlib
+  
+  - name: Clone torch repository
+    git:
+        repo: https://github.com/torch/distro.git
+        dest: ~/torch
+        recursive: yes
+        force: yes
+        accept_hostkey: yes
+
+  - name: Clone openface git directory
+    git:
+      repo: https://github.com/cmusatyalab/openface.git
+      dest: ~/openface
+      recursive: yes
+
+  - name: Clone ansible-cloudmesh-face
+    git:
+      repo: https://github.com/cloudmesh/ansible-cloudmesh-face.git
+      dest: ~/ansible-cloudmesh-face
+
+  - name: set permissions for directories
+    file: path={{ item }} state=directory owner=cc group=cc mode=0777 recurse=yes
+    with_items:
+      - /home/cc/openface
+      - /home/cc/torch
+
+
+

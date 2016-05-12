@@ -1,0 +1,11 @@
+---
+# tasks file for ansible-cloudmesh-openface
+
+- include: ubuntu_1_system.yml tags=system
+  when: ansible_distribution == 'Ubuntu'
+
+- include: ubuntu_2_torch.yml tags=torch
+  when: ansible_distribution == 'Ubuntu'
+
+- include: ubuntu_2_openface.yml tags=openface
+  when: ansible_distribution == 'Ubuntu'
