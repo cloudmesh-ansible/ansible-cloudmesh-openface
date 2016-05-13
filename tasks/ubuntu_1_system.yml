@@ -63,31 +63,34 @@
     with_items:
       - scikit-learn 
       - dlib
-  
-  - name: Clone torch repository
+
+  - name: create {{ install.dir }}
+    shell: mkdir -p {{ install.dir }}
+
+  - name: Clone torch repository to {{ install.dir }}
     git:
         repo: https://github.com/torch/distro.git
-        dest: ~/torch
+        dest: {{ install.dir }}/torch
         recursive: yes
         force: yes
         accept_hostkey: yes
 
-  - name: Clone openface git directory
+  - name: Clone openface git directory to {{ install.dir }}
     git:
       repo: https://github.com/cmusatyalab/openface.git
-      dest: ~/openface
+      dest: {{ install.dir }}/openface
       recursive: yes
 
-  - name: Clone ansible-cloudmesh-face
+  - name: Clone ansible-cloudmesh-face to {{ install.dir }}
     git:
       repo: https://github.com/cloudmesh/ansible-cloudmesh-face.git
-      dest: ~/ansible-cloudmesh-face
+      dest: {{ install.dir }}/ansible-cloudmesh-face
 
   - name: set permissions for directories
     file: path={{ item }} state=directory owner=cc group=cc mode=0777 recurse=yes
     with_items:
-      - /home/cc/openface
-      - /home/cc/torch
+      - {{ install.dir }}/openface
+      - {{ install.dir }}/torch
 
 
 
